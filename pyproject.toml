@@ -1,0 +1,47 @@
+# Qurish tizimi (build-system) – muhim qism!
+[build-system]
+requires = ["setuptools>=61.0", "wheel"] # Qurish uchun kerakli modullar
+build-backend = "setuptools.build_meta"  # Setuptools yordamida qurish
+
+# Loyiha haqida ma'lumot (project)
+[project]
+name = "asaka"                  # Paket nomi (PyPi uchun)
+version = "0.0.1"               # Paket versiyasi
+description = "Asaka - foydali Python kutubxonasi" # Qisqa tavsif
+requires-python = ">=3.8"       # Minimal Python versiyasi
+license = {text = "MIT"}        # Litsenziya turi
+
+# Muallif ma'lumotlari
+authors = [
+  {name = "fhayits", email = "fhayitmurods@gmail.com"}
+]
+
+# Asosiy bog'liqliklar (install_requires o'rniga)
+dependencies = []
+
+# Ixtiyoriy xususiyatlar (extra_requires o'rniga)
+[project.optional-dependencies]
+dev = ["pytest", "black"]  # Dasturlash va test uchun
+docs = ["mkdocs"]          # Hujjat yozish uchun
+
+# Skriptlar (konsol buyruqlari uchun)
+[project.scripts]
+asaka-fhs = "asaka.core:main"  # `asaka-cli` buyrug'i `main()` funksiyasini chaqiradi
+
+# 3️⃣ Paketni topish qoidalari (setuptools konfiguratsiyasi)
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["asaka*"]  # asaka/ katalogini paket sifatida tanlash
+
+# 4️⃣ Testlar va boshqa vositalar (tool)
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+# Meta ma'lumot (qidiruv uchun)
+[project.urls]
+"Homepage" = "https://github.com/username/asaka"
+"Bug Tracker" = "https://github.com/username/asaka/issues"
